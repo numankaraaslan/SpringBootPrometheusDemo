@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s   # How often to scrape targets (you can increase to 30s or 60s in prod)
+  scrape_timeout: 4s    # Timeout for scraping
+
+scrape_configs:
+  - job_name: 'springboot-book-app'
+    metrics_path: '/actuator/prometheus'
+    scheme: http
+
+    static_configs:
+      - targets:
+          - 'book-api:8080'
+        labels:
+          env: 'prod'
+          service: 'book-api'
+
